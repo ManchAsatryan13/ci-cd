@@ -20,4 +20,4 @@ jobs:
         server: ftp.epicerecaravane.fr
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /public_html/ci-cd.epicerecaravane.fr/ci-cd/
+        server-dir: /
