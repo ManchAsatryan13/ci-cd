@@ -18,7 +18,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ftp.epicerecaravane.fr
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
+        username: ci-cd@ci-cd.epicerecaravane.fr	
+        password: V#?T!ptwAp0N.SJ^
         server-dir: ./
         
