@@ -20,5 +20,4 @@ jobs:
         server: ftp.epicerecaravane.fr
         username: ci-cd@ci-cd.epicerecaravane.fr	
         password: V#?T!ptwAp0N.SJ^
-        server-dir: ./
         
