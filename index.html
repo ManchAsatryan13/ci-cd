@@ -1,8 +1,383 @@
-<html>
-    <head>
-        <title>Test title</title>
-    </head>
-    <body>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam adipisci libero sit quod laboriosam saepe vel illum tempora pariatur magni porro animi sed molestias natus, culpa iure nam esse nostrum.
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Elegant Template</title>
+  <meta name="description" content="A simple, responsive HTML template — Hero, Features, Pricing, Contact." />
+  <meta name="theme-color" content="#0f172a" />
+  <style>
+    :root{
+      --bg:#0f172a;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#06b6d4;
+      --accent-2:#7c3aed;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max-w:1100px;
+      --gap:18px;
+      --ff:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ff);
+      background:
+        linear-gradient(180deg, rgba(12,18,26,1) 0%, rgba(6,10,14,1) 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{
+      max-width:var(--max-w);
+      margin:0 auto;
+      padding:28px;
+    }
+
+    /* Header / Nav */
+    header{
+      position:sticky;
+      top:12px;
+      z-index:40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(6,10,14,0.6), rgba(6,10,14,0.25));
+      border-radius:12px;
+      margin:12px;
+      padding:8px 12px;
+    }
+    .nav-row{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:44px;height:44px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:inline-grid;place-items:center;font-weight:700;
+      box-shadow: 0 6px 20px rgba(12,18,26,0.6);
+      color:#021025;
+      font-family:monospace;
+    }
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px;font-size:0.95rem}
+    nav a:hover{color:var(--accent);background:var(--glass)}
+    .cta{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#021025;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:600;
+      box-shadow: 0 8px 28px rgba(12,18,26,0.45);
+    }
+
+    /* Mobile */
+    .menu-toggle{display:none;border:0;background:transparent;color:var(--muted);font-size:1.25rem}
+    @media (max-width:880px){
+      nav ul{display:none}
+      .menu-toggle{display:inline-block}
+      header{padding:10px}
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:26px;
+      align-items:center;
+      margin-top:36px;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow: 0 10px 30px rgba(3,6,12,0.6);
+    }
+    .eyebrow{color:var(--accent);font-weight:700;font-size:0.85rem;}
+    h1{margin:8px 0 12px;font-size:2rem;line-height:1.05}
+    p.lead{color:var(--muted);margin:0 0 20px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn-outline{background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.06)}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021025}
+
+    /* Stats / small cards */
+    .stats{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .stat{background:var(--card);padding:12px;border-radius:12px;min-width:110px;text-align:center}
+    .stat .num{font-weight:700;font-size:1.15rem}
+    .stat .label{color:var(--muted);font-size:0.85rem}
+
+    /* Right column preview */
+    .preview{
+      border-radius:12px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.02);
+      padding:18px;
+    }
+    .mock{
+      height:260px;
+      border-radius:10px;
+      background:
+        linear-gradient(180deg, rgba(3,7,18,0.8), rgba(6,10,14,1));
+      display:flex;align-items:center;justify-content:center;color:var(--muted);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+
+    /* Features grid */
+    .features{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:var(--gap);
+      margin-top:32px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+      min-height:120px;
+    }
+    .card h3{margin:0 0 8px}
+    .card p{color:var(--muted);margin:0;font-size:0.95rem}
+
+    /* Pricing */
+    .pricing{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:var(--gap);
+      margin:34px 0;
+    }
+    .price{
+      padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .price .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .price .amount{font-weight:800;font-size:1.8rem}
+    .price ul{color:var(--muted);margin:10px 0 16px;padding-left:18px}
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:20px;margin-bottom:48px;
+    }
+    form{background:var(--card);padding:18px;border-radius:12px}
+    label{display:block;font-size:0.9rem;margin-bottom:6px}
+    input,textarea,select{
+      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);
+      background:transparent;color:inherit;font-size:0.95rem;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .form-row{margin-bottom:12px}
+
+    /* Footer */
+    footer{color:var(--muted);padding:24px 0;border-top:1px solid rgba(255,255,255,0.02)}
+    .footer-grid{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+    /* Responsive adjustments */
+    @media (max-width:1100px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns: repeat(2,1fr)}
+      .pricing{grid-template-columns: repeat(2,1fr)}
+      .contact{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .features{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .nav-row{gap:10px}
+      .brand .text{display:none}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-row" role="navigation" aria-label="Main navigation">
+      <a class="brand" href="#">
+        <div class="logo">M</div>
+        <div class="text">
+          <div style="font-weight:700">MyProject</div>
+          <div style="font-size:0.8rem;color:var(--muted)">clean & minimal</div>
+        </div>
+      </a>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" id="menuToggle">☰</button>
+        <nav id="primary-nav">
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a class="cta" href="#get-started">Get Started</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <section class="hero">
+      <div class="hero-card" aria-labelledby="hero-title">
+        <div class="eyebrow">Launch faster</div>
+        <h1 id="hero-title">A modern HTML template — built for speed & clarity</h1>
+        <p class="lead">Start with a clean foundation. This template includes a responsive layout, accessible elements, simple components, and a light JavaScript layer for interaction.</p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="primaryAction">Try demo</button>
+          <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact us</button>
+        </div>
+
+        <div class="stats" aria-hidden="true">
+          <div class="stat"><div class="num">99.9%</div><div class="label">Uptime</div></div>
+          <div class="stat"><div class="num">120+</div><div class="label">Integrations</div></div>
+          <div class="stat"><div class="num">24/7</div><div class="label">Support</div></div>
+        </div>
+      </div>
+
+      <aside class="preview" aria-hidden="true">
+        <div class="mock">
+          <div>
+            <div style="font-weight:700;margin-bottom:8px">Preview</div>
+            <div style="color:var(--muted)">Put a screenshot or product mockup here</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="features" class="features" aria-label="Features">
+      <article class="card">
+        <h3>Accessible & semantic</h3>
+        <p>Built with proper HTML structure and ARIA-friendly patterns so screen readers and bots behave nicely.</p>
+      </article>
+
+      <article class="card">
+        <h3>Responsive layout</h3>
+        <p>Mobile-first CSS that scales upward — works great on phones, tablets, and desktops.</p>
+      </article>
+
+      <article class="card">
+        <h3>Customizable</h3>
+        <p>Variables, simple components, and clear sections make it fast to adapt to your brand.</p>
+      </article>
+    </section>
+
+    <section id="pricing" aria-label="Pricing" class="pricing">
+      <div class="price">
+        <div class="head"><strong>Starter</strong><div class="amount">$0</div></div>
+        <div class="muted">Great for prototypes</div>
+        <ul>
+          <li>Basic components</li>
+          <li>Community support</li>
+        </ul>
+        <button class="btn btn-outline">Get Starter</button>
+      </div>
+
+      <div class="price">
+        <div class="head"><strong>Pro</strong><div class="amount">$19<span style="font-size:0.7rem">/mo</span></div></div>
+        <div class="muted">For small teams</div>
+        <ul>
+          <li>Advanced layout</li>
+          <li>Priority support</li>
+        </ul>
+        <button class="btn btn-primary">Choose Pro</button>
+      </div>
+
+      <div class="price">
+        <div class="head"><strong>Enterprise</strong><div class="amount">Custom</div></div>
+        <div class="muted">Scale with custom plans</div>
+        <ul>
+          <li>Dedicated support</li>
+          <li>SLAs & integrations</li>
+        </ul>
+        <button class="btn btn-outline">Contact Sales</button>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contactTitle">
+      <div>
+        <h2 id="contactTitle">Get in touch</h2>
+        <p style="color:var(--muted)">Have a question, feature request or want a custom build? Send a message and we'll reply within 24 hours.</p>
+
+        <form id="contactForm" onsubmit="handleFormSubmit(event)" novalidate>
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" required placeholder="Your name" />
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+          </div>
+
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us about your project"></textarea>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="btn btn-primary" type="submit">Send message</button>
+            <div id="formStatus" style="color:var(--muted);font-size:0.95rem"></div>
+          </div>
+        </form>
+      </div>
+
+      <aside style="background:var(--card);padding:18px;border-radius:12px">
+        <h3>Contact info</h3>
+        <p style="color:var(--muted);margin:6px 0">Email: hello@example.com</p>
+        <p style="color:var(--muted);margin:6px 0">Phone: +1 (555) 123-4567</p>
+        <p style="color:var(--muted);margin:6px 0">Location: Your City</p>
+      </aside>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div>&copy; <span id="year"></span> MyProject. All rights reserved.</div>
+        <div style="color:var(--muted)">Built with ❤️ — Customize freely.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Basic interactions: mobile menu, primary action, and form (no network request)
+    (function(){
+      const menuBtn = document.getElementById('menuToggle');
+      const nav = document.getElementById('primary-nav');
+      menuBtn?.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        const ul = nav.querySelector('ul');
+        if (ul) {
+          ul.style.display = expanded ? 'none' : 'flex';
+        }
+      });
+
+      // Primary CTA demo
+      document.getElementById('primaryAction')?.addEventListener('click', () => {
+        document.getElementById('top').scrollIntoView({behavior:'smooth'});
+        alert('This is a demo action. Replace with your real link or functionality.');
+      });
+
+      // Fake form handling
+      window.handleFormSubmit = function(e){
+        e.preventDefault();
+        const status = document.getElementById('formStatus');
+        status.textContent = 'Sending...';
+        // Simulate network delay
+        setTimeout(() => {
+          status.textContent = 'Thanks — we will reply shortly!';
+          e.target.reset();
+        }, 900);
+      };
+
+      // year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
 </html>
