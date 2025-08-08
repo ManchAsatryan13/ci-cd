@@ -20,6 +20,6 @@ jobs:
         server: ftp.epicerecaravane.fr
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /public_html/ci-cd.epicerecaravane.fr/
+        server-dir: /
         protocol: ftp
         port: 21
