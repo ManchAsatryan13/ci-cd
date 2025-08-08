@@ -1,23 +1,26 @@
-on: 
-  push:
-    branches:
-     - main
+name: 🚀 Deploy website on merge to main
 
-name: 🚀 Deploy website on push
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
 
 jobs:
   web-deploy:
+    if: github.event.pull_request.merged == true
     name: 🎉 Deploy
     runs-on: ubuntu-latest
 
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
 
-    - name: 📂 Sync files via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ftp.epicerecaravane.fr
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
-        server-dir: /
+      - name: 📂 Sync files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.epicerecaravane.fr
+          username: ${{ secrets.ftp_username }}
+          password: ${{ secrets.ftp_password }}
+          server-dir: /
